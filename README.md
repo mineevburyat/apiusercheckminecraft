@@ -2,3 +2,6 @@
 2. активировать виртуальное окружение . .venv/bin/activate
 3. установить зависимости pip install -r requirements.txt
 4. запустить сервер uvicorn main:app --reload
+
+
+интересный способ
