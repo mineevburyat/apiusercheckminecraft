@@ -53,3 +53,11 @@ def del_nick(nick):
     """
     data = {"result": nicks_list.delete(nick)}
     return JSONResponse(content=jsonable_encoder(data))
+
+@app.get("/api/save")
+def save_db():
+    """
+    Сохранить состояние базы данных
+    """
+    data = nicks_list.save()
+    return JSONResponse(content=jsonable_encoder(data))
