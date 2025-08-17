@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
- 
+import db
+
 app = FastAPI()
- 
+nicks_list = db.NicksDB()
+
 @app.get("/")
 def root():
     data = {"message": "Hello METANIT.COM", 
@@ -19,8 +21,7 @@ def check_player():
     
 @app.get("/api/check_nick/{nic}")
 def check_nick(nic):
-    nick_list = ["mineev", "KacPsi"]
-    if nic in nick_list:
+    if nicks_list.check(nic):
         data = {"verified": True}
     else:
         data = {"verified": False}
@@ -29,10 +30,26 @@ def check_nick(nic):
 
 @app.get("/status")
 def check_nick_other(nick):
-    nick_list = ["mineev", "KacPsi"]
-    if nick in nick_list:
+    if nicks_list.check(nick):
         data = {"verified": True}
     else:
         data = {"verified": False}
     json_data = jsonable_encoder(data)
     return JSONResponse(content=json_data)
+
+
+@app.get("/api/add_nick/{nick}")
+def add_nick(nick):
+    """
+    Добавить ник в базу данных через телеграм бота
+    """
+    data = {"result": nicks_list.add(nick)}
+    return JSONResponse(content=jsonable_encoder(data))
+
+@app.get("/api/del_nick/{nick}")
+def del_nick(nick):
+    """
+    Добавить ник в базу данных через телеграм бота
+    """
+    data = {"result": nicks_list.delete(nick)}
+    return JSONResponse(content=jsonable_encoder(data))
