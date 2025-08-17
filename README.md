@@ -4,4 +4,4 @@
 4. запустить сервер uvicorn main:app --reload
 
 
-интересный способ
+интересный способ: https://habr.com/ru/articles/718848/
