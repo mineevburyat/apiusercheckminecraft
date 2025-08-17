@@ -70,7 +70,7 @@ if __name__ == "__main__":
     print(nicks is nicks2)
     print(nicks.add("mineev"))
     print(nicks.add("KacPsi"))
-    print(nicks.add("Федя"))
+    print(nicks.add("Hicatia"))
     print(nicks)
     print(nicks.delete("Федя"))
     print(nicks)
