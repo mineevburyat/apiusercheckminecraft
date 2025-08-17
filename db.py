@@ -30,7 +30,6 @@ class NicksDB():
             else:
                 self.__nick_list.append(nick)
                 return True
-        
 
     def delete(self, nick):
         if nick in self.__nick_list:

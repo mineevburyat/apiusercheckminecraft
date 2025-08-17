@@ -41,7 +41,7 @@ def check_nick_other(nick):
 @app.get("/api/add_nick/{nick}")
 def add_nick(nick):
     """
-    Добавить ник в базу данных через телеграм бота
+    Добавить ник в базу данных (через телеграм бота)
     """
     data = {"result": nicks_list.add(nick)}
     return JSONResponse(content=jsonable_encoder(data))
@@ -49,7 +49,7 @@ def add_nick(nick):
 @app.get("/api/del_nick/{nick}")
 def del_nick(nick):
     """
-    Добавить ник в базу данных через телеграм бота
+    Удалить ник из базы данных (через телеграм бота)
     """
     data = {"result": nicks_list.delete(nick)}
     return JSONResponse(content=jsonable_encoder(data))
