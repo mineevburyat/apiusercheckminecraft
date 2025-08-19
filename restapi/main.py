@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
-import db
+import restapi.db as db
 
 app = FastAPI()
 nicks_list = db.NicksDB()
