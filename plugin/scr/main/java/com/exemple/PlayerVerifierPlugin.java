@@ -19,7 +19,7 @@ public class PlayerVerifierPlugin extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         String playerName = event.getPlayer().getName();
-        String apiUrl = "http://146.120.246.140:8000/api/check_nick/" + playerName;
+        String apiUrl = "СВОЙ СЕРВЕР" + playerName;
 
         Request request = new Request.Builder()
                 .url(apiUrl)
