@@ -1,6 +1,12 @@
 import requests
 from app.reg_event import registration
-from config import API_REG, API_CHEAK, API_DEL, API_SAVE
+
+
+import configparser 
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+API_REG = config['API']['API_REG'].strip()
 
 def register_nick(data: dict):
     try:

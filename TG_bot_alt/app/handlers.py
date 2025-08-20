@@ -9,12 +9,18 @@ from app.reqest import register_nick
 from .reg_event import registration
 import app.keyboard as kb
 
+
+
 router = Router()
 
 
 @router.message(CommandStart())
 async def start(message: Message):
     await message.answer('Хочешь поиграть на моём сервере maincraft?', reply_markup=kb.start_kb)
+
+# @router.message(F.data == "menu")
+# async def start(message: Message):
+#     await message.answer('Хочешь поиграть на моём сервере maincraft?', reply_markup=kb.start_kb)
 
 
 @router.callback_query(F.data == "reg_event")  
@@ -47,18 +53,18 @@ async def confirm_event(callback: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
     status, result = register_nick(data)
 
+    
     if status == 200:
         await callback.message.edit_text("✅ Запускай ланчер и играй!! мы ждем тебя!!.")
     elif status != 200:
         await callback.message.edit_text(f"⚠️ Ошибка при подключении:\n{result}")
     else:
-        # Проверим, словарь это или строка
         if isinstance(result, dict):
             msg = result.get('message', str(result))
         else:
-            msg = result  # просто строка
+            msg = result  
 
-        await callback.message.edit_text(f"❌ Ошибка при создании события (код {status}):\n{msg}")
+        await callback.message.edit_text(f"❌ Ошибка при создании события (код {status}):\n{msg}",reply_markup=kb.other)
 
     await state.clear()
     await callback.answer()
