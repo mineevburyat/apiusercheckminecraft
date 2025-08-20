@@ -1,0 +1,7 @@
+name: TelegramAuth
+version: 1.0
+main: com.example.TelegramAuthPlugin
+api-version: 1.21
+commands:
+  auth:
+    description: "Привязка Telegram"
