@@ -9,10 +9,16 @@ from app.reqest import register_nick
 from .reg_event import registration
 import app.keyboard as kb
 
+
+
 router = Router()
 
 
 @router.message(CommandStart())
+async def start(message: Message):
+    await message.answer('Хочешь зарегистрироваться в проекте?', reply_markup=kb.start_kb)
+
+@router.message(F.data == "menu")
 async def start(message: Message):
     await message.answer('Хочешь зарегистрироваться в проекте?', reply_markup=kb.start_kb)
 
@@ -47,18 +53,18 @@ async def confirm_event(callback: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
     status, result = register_nick(data)
 
-    if status == 201:
-        await callback.message.edit_text("✅ Событие успешно создано.")
-    elif status == 0:
-        await callback.message.edit_text(f"⚠️ Ошибка при подключении:\n{result}")
+    
+    if status == 200:
+        await callback.message.edit_text("✅ Событие успешно создано.", reply_markup=kb.menu_kb )
+    elif status != 200:
+        await callback.message.edit_text(f"⚠️ Ошибка при подключении:\n{result}",reply_markup=kb.other)
     else:
-        # Проверим, словарь это или строка
         if isinstance(result, dict):
             msg = result.get('message', str(result))
         else:
-            msg = result  # просто строка
+            msg = result  
 
-        await callback.message.edit_text(f"❌ Ошибка при создании события (код {status}):\n{msg}")
+        await callback.message.edit_text(f"❌ Ошибка при создании события (код {status}):\n{msg}",reply_markup=kb.other)
 
     await state.clear()
     await callback.answer()

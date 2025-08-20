@@ -1,9 +1,12 @@
 import  asyncio
 from aiogram import Bot, Dispatcher, F
-from config import BOT_TOKEN
 from app.handlers import router
 
+import configparser 
+config = configparser.ConfigParser()
+config.read('config.ini')
 
+BOT_TOKEN = config['BOT']['BOT_TOKEN'].strip()
 
 async def main():
     bot = Bot(token= BOT_TOKEN)
