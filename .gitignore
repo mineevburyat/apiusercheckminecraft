@@ -3,4 +3,5 @@ __pycache__/
 *.py[codz]
 *$py.class
 db.json
-config
+config.ini
+.vscode
