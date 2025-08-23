@@ -5,5 +5,5 @@ __pycache__/
 db.json
 config.ini
 .vscode
-
+logs
 bot.log
