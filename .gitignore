@@ -5,4 +5,10 @@ __pycache__/
 db.json
 config.ini
 .vscode
+;main
+logs
+user_actions.log
+bot.log
+=======
 TG_bot_alt/
+;main

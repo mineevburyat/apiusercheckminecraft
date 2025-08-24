@@ -1,8 +1,20 @@
 import requests
+import configparser 
+import requests # type: ignore
 from app.reg_event import registration
 
+from bot_logging.utils import log_revest_event, log_error  # ← ИЗМЕНИЛ
 
-import configparser 
+async def revest_operation(user_id: int, username: str, action: str):
+    try:
+        log_revest_event(user_id, username, "operation", f"action: {action}")
+        # ваш код
+        return True
+    except Exception as e:
+        log_error("RevestError", str(e), user_id)
+        return False
+
+
 config = configparser.ConfigParser()
 config.read('config.ini')
 

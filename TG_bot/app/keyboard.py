@@ -1,4 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
+from bot_logging.utils import log_keyboard_action
 
 
 start_kb = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='регистрация' , callback_data='reg_event')]])
