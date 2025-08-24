@@ -61,3 +61,7 @@ def save_db():
     """
     data = nicks_list.save()
     return JSONResponse(content=jsonable_encoder(data))
+
+@app.post("/api2/add_nick")
+def add2(nick):
+    pass
